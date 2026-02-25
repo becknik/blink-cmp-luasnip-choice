@@ -26,7 +26,6 @@ function source:get_completions(ctx, callback)
 	local keyword = ctx:get_keyword()
 
 	local choice_docstrings = require("luasnip").get_current_choices()
-	print(choice_docstrings)
 
 	for i, choice_docstring in ipairs(choice_docstrings) do
 		--- @type lsp.CompletionItem
@@ -35,14 +34,7 @@ function source:get_completions(ctx, callback)
 			kind = require("blink.cmp.types").CompletionItemKind.Snippet,
 			index = i,
 			filterText = keyword,
-			textEdit = {
-				newText = "",
-				range = {
-					-- 0-indexed line and character, end-exclusive
-					start = { line = 0, character = 0 },
-					["end"] = { line = 0, character = 0 },
-				},
-			},
+			insertText = "",
 		}
 
 		table.insert(items, item)
