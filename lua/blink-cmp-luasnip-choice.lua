@@ -24,6 +24,7 @@ function source:get_completions(ctx, callback)
 	local items = {}
 
 	local keyword = ctx:get_keyword()
+	local cursor = ctx.cursor -- {line 1-indexed, col 0-indexed}
 
 	local choice_docstrings = require("luasnip").get_current_choices()
 	print(choice_docstrings)
@@ -39,8 +40,8 @@ function source:get_completions(ctx, callback)
 				newText = "",
 				range = {
 					-- 0-indexed line and character, end-exclusive
-					start = { line = 0, character = 0 },
-					["end"] = { line = 0, character = 0 },
+					start = { line = cursor[1] - 1, character = cursor[2] },
+					["end"] = { line = cursor[1] - 1, character = cursor[2] },
 				},
 			},
 		}
