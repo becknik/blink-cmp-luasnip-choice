@@ -27,7 +27,6 @@ function source:get_completions(ctx, callback)
 	local cursor = ctx.cursor -- {line 1-indexed, col 0-indexed}
 
 	local choice_docstrings = require("luasnip").get_current_choices()
-	print(choice_docstrings)
 
 	for i, choice_docstring in ipairs(choice_docstrings) do
 		--- @type lsp.CompletionItem
